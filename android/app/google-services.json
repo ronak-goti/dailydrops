@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "765187161465",
+    "project_id": "dailydrops-d8223",
+    "storage_bucket": "dailydrops-d8223.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765187161465:android:d956117a51d244b29d83a8",
+        "android_client_info": {
+          "package_name": "com.example.dailydrops"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGng6e6wIbPrvQrcvOVH7ad9eibhEATsw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
