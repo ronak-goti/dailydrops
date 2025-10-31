@@ -1,10 +1,13 @@
-import 'package:dailydrops/screens/auth/login_page.dart';
-import 'package:dailydrops/screens/auth/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'home/admin_home.dart';
-import 'home/user_home.dart';
+import 'screens/login_screen.dart';
+import 'screens/register_screen.dart';
+import 'screens/role_select_screen.dart';
+import 'screens/onboarding_screen.dart';
+import 'screens/home_screen.dart';
+import 'services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,16 +20,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Auth Demo',
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
-      routes: {
-        '/login': (_) => const LoginPage(),
-        '/register': (_) => const RegisterPage(),
-        '/adminHome': (_) => const AdminHome(),
-        '/userHome': (_) => const UserHome(),
-      },
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(create: (_) => AuthService()),
+      ],
+      child: MaterialApp(
+        title: 'Auth + Roles Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        initialRoute: '/login',
+        routes: {
+          '/login': (_) => const LoginScreen(),
+          '/register': (_) => const RegisterScreen(),
+          '/role-select': (_) => const RoleSelectScreen(),
+          '/onboarding': (_) => const OnboardingScreen(),
+          '/home': (_) => const HomeScreen(),
+        },
+      ),
     );
   }
 }
