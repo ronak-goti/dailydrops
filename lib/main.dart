@@ -1,41 +1,32 @@
+import 'package:dailydrops/screens/auth/login_page.dart';
+import 'package:dailydrops/screens/auth/register_page.dart';
 import 'package:flutter/material.dart';
-import 'constants/colors.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'home/admin_home.dart';
+import 'home/user_home.dart';
 
-void main() {
-  runApp(const DailyDropsApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MyApp());
 }
 
-class DailyDropsApp extends StatelessWidget {
-  const DailyDropsApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DailyDrops',
+      title: 'Auth Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: AppColors.primary,
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
-        scaffoldBackgroundColor: AppColors.background,
-        useMaterial3: true,
-      ),
-      home: const SplashScreen(),
-    );
-  }
-}
-
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Welcome to DailyDrops 🚀',
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-        ),
-      ),
+      initialRoute: '/login',
+      routes: {
+        '/login': (_) => const LoginPage(),
+        '/register': (_) => const RegisterPage(),
+        '/adminHome': (_) => const AdminHome(),
+        '/userHome': (_) => const UserHome(),
+      },
     );
   }
 }
